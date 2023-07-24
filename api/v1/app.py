@@ -1,22 +1,19 @@
 #!/usr/bin/python3
-"""
-Starts a web flask application
-"""
-from flask import Flask, jsonify
+""" Starts a web flask application """
+
 from api.v1.views import app_views
+from flask import Flask, jsonify
 from models import storage
 from os import getenv
 
 # Creating Flask app instance
 app = Flask(__name__)
-
 # Registers the app_view blueprint
 app.register_blueprint(app_views)
 
-# Declaring a method handler app teardown that closes the storage
 @app.teardown_appcontext
 def teardown_app(self):
-    """ Method to handle app teardown """
+    """ Closes Current Session """
     storage.close()
 
 
