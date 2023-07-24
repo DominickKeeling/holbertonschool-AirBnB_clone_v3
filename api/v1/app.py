@@ -27,4 +27,4 @@ def it_borked(error):
 if __name__ == "__main__":
     host = getenv('HBNB_API_HOST', '0.0.0.0')
     port = getenv('HBNB_API_PORT', 5000)
-    app.run(host, int(port), threaded=True, debug=True)
+    app.run(host, int(port), threaded=True)
