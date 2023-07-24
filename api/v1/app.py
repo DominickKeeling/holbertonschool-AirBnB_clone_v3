@@ -15,6 +15,13 @@ app.register_blueprint(app_views)
 def teardown_app():
     """ Method to handle app teardown """
     storage.close()
+
+
+@app.errorhandler(404)
+def it_borked(error):
+    """ Handles 404 errors and returns a JSON 404 status code """
+    return jsonify({"error": "Not found"}), 404
+
     
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, threaded=True, debug=True)
