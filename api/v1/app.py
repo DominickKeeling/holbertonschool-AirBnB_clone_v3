@@ -1,22 +1,24 @@
 #!/usr/bin/python3
-"""
-Starts a web flask application
-"""
+"""Starts a web flask application"""
 
 from flask import Flask, jsonify
 from api.v1.views import app_views
 from models import storage
 from os import getenv
 
+# Creating Flask app instance
 app = Flask(__name__)
 
+# Registers the app_view blueprint
 app.register_blueprint(app_views)
 
+# Declaring a method handler app teardown that closes the storage
 @app.teardown_appcontext
 def teardown_app(self):
     """ Method to handle app teardown """
     storage.close()
     
+# This starts the Flask application
 if __name__ == "__main__":
     host = getenv('HBNB_API_HOST', '0.0.0.0')
     port = int(getenv('HBNB_API_PORT', 5000))
