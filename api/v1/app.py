@@ -2,14 +2,13 @@
 """ Starts a web flask application """
 
 from api.v1.views import app_views
-from flask import Flask, jsonify
+from flask import Flask, make_response, jsonify
 from models import storage
 from os import getenv
 
-# Creating Flask app instance
 app = Flask(__name__)
-# Registers the app_view blueprint
 app.register_blueprint(app_views)
+
 
 @app.teardown_appcontext
 def teardown_app(obj):
@@ -23,8 +22,7 @@ def it_borked(error):
     return make_response(jsonify({"error": "Not found"}), 404)
     
 
-# This starts the Flask application
 if __name__ == "__main__":
-    host = getenv('HBNB_API_HOST', '0.0.0.0')
-    port = getenv('HBNB_API_PORT', 5000)
+    host = getenv('HBNB_API_HOST', default='0.0.0.0')
+    port = getenv('HBNB_API_PORT', default=5000)
     app.run(host, int(port), threaded=True)
