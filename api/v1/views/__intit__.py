@@ -1,6 +1,10 @@
-from flask import Blueprint
-from api.v1.views import app_views
+#!/usr/bin/python3
+""" Init file """
 
+from flask import Blueprint
+
+# Creating a blueprint instance for API 
 app_views = Blueprint('app_views', __name__, url_prefix='/api/v1')
 
-from .index import *
+# importing everything from index
+from api.v1.views.index import *
