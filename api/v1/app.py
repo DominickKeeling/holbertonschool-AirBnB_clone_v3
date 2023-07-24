@@ -1,6 +1,7 @@
 #!/usr/bin/python3
-"""Starts a web flask application"""
-
+"""
+Starts a web flask application
+"""
 from flask import Flask, jsonify
 from api.v1.views import app_views
 from models import storage
@@ -22,9 +23,9 @@ def teardown_app(self):
 @app.errorhandler(404)
 def it_borked(error):
     """ Handles 404 errors and returns a JSON 404 status code """
-    return jsonify({"error": "Not found"}), 404
-
+    return make_response(jsonify({"error": "Not found"}), 404)
     
+
 # This starts the Flask application
 if __name__ == "__main__":
     host = getenv('HBNB_API_HOST', '0.0.0.0')
