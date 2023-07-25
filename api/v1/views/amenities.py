@@ -26,7 +26,7 @@ def amenity(amenity_id):
     
 
 # Route to delete a amenity
-@app_views.route("amenities/<amenity_id>", methods=['GET'], strict_slashes=False)
+@app_views.route("amenities/<amenity_id>", methods=['DELETE'], strict_slashes=False)
 def delete_amenity(amenity_id):
     """method for deleting amenity objects"""
     amenity = storage.get(Amenity, amenity_id)
@@ -46,7 +46,7 @@ def post_amenity():
     if not request.is_json:
         abort(400, 'Request is not in JSON format')
 
-    data = request.get_json
+    data = request.get_json()
     if 'name' not in data:
         abort(400, 'Missing "name" field')
         
@@ -68,7 +68,7 @@ def update_amenity(amenity_id):
     if not request.is_json:
         return abort(400, 'Request is not in JSON format')
 
-    data = request.get_json
+    data = request.get_json()
     if 'name' not in data:
         return abort(400, 'Missing "name" field')
 
