@@ -64,20 +64,20 @@ def update_state(state_id):
 
     # Get the existing state object based on the provided state_id
     state = storage.get(State, state_id)
-    if not state:
-        return abort(404)
+    if state is None:
+        abort(404)
     if not request.is_json:
-        return abort(400, 'Request is not in JSON format')
+        abort(400, 'Not a JSON')
 
     data = request.get_json()
     if 'name' not in data:
-        return abort(400, 'Missing "name" field')
+        abort(400, 'Missing name')
 
     ignore_attributes = ['id', 'created_at', 'updated_at']
     for key, value in data.items():
         if key not in ignore_attributes:
             setattr(state, key, value)
 
-    storage.save()
+    state.save()
 
-    return jsonify(state.to_dict()), 200
+    return jsonify(state.to_dict())
