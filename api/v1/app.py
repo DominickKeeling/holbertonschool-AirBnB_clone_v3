@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """ Starts a web flask application """
 from models import storage
-from flask import Flask, make_response
+from flask import Flask, jsonify
 from api.v1.views import app_views
 from os import getenv
 
@@ -25,4 +25,4 @@ if __name__ == "__main__":
     hosts = getenv('HBNB_API_HOST', default='0.0.0.0')
     ports = getenv('HBNB_API_PORT', default=5000)
 
-    app.run(host=hosts, port=ports, threaded=True)
+    app.run(host=hosts, port=ports threaded=True)
