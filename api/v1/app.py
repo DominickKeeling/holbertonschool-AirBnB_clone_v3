@@ -1,11 +1,12 @@
 #!/usr/bin/python3
 """ Starts a web flask application """
 from models import storage
-from flask import Flask, make_response
+from flask import Flask, jsonify
 from api.v1.views import app_views
 from os import getenv
 
 app = Flask(__name__)
+
 app.register_blueprint(app_views)
 
 
@@ -22,7 +23,7 @@ def it_borked(error):
 
 
 if __name__ == "__main__":
-    hosts = getenv('HBNB_API_HOST', default='0.0.0.0')
-    ports = getenv('HBNB_API_PORT', default=5000)
+    host = getenv("HBNB_API_HOST", default="0.0.0.0")
+    port = int(getenv("HBNB_API_PORT", default=5000))
 
-    app.run(host=hosts, port=ports, threaded=True)
+    app.run(host=host, port=port, threaded=True)
