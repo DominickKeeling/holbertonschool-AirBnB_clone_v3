@@ -1,29 +1,29 @@
 #!/usr/bin/python3
-""" Starts a web flask application """
+""" Status of your API """
+from flask import Flask, jsonify, make_response
+from flask_cors import CORS
+import os
 from models import storage
-from flask import Flask, jsonify
 from api.v1.views import app_views
-from os import getenv
 
 app = Flask(__name__)
-
+CORS(app, resources={r"/*": {"origins": "0.0.0.0"}})
 app.register_blueprint(app_views)
 
 
 @app.teardown_appcontext
-def teardown_app(self):
-    """ Closes Current Session """
+def tear_it_down(stuff):
+    """ close storage """
     storage.close()
 
 
 @app.errorhandler(404)
-def it_borked(error):
-    """ Handles 404 errors and returns a JSON 404 status code """
-    return jsonify({"error": "Not found"}), 404
+def handle_404(error):
+    """ displays 404 error """
+    return make_response(jsonify({"error": "Not found"}), 404)
 
 
-if __name__ == "__main__":
-    host = getenv("HBNB_API_HOST", default="0.0.0.0")
-    port = int(getenv("HBNB_API_PORT", default=5000))
-
+if __name__ == '__main__':
+    host = os.environ.get("HBNB_API_HOST", "0.0.0.0")
+    port = int(os.environ.get("HBNB_API_PORT", 5000))
     app.run(host=host, port=port, threaded=True)
