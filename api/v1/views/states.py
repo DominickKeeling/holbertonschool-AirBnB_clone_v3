@@ -16,7 +16,7 @@ def states():
 
 
 # route to get the state id
-@app_views.route("states/<state_id>", methodds=['GET'], strict_slashes=False)
+@app_views.route("states/<state_id>", methods=['GET'], strict_slashes=False)
 def state(state_id):
     """ this method obtains the state object in json format"""
     state = storage.get(State, state_id)

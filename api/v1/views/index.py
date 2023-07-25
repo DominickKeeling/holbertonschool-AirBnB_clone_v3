@@ -4,7 +4,6 @@ routing index file
 """
 from api.v1.views import app_views
 from flask import jsonify
-from models import storage
 
 
 @app_views.route('/status', methods=['GET'], strict_slashes=False)
@@ -17,6 +16,7 @@ def status():
 
 @app_views.route('/stats', methods=['GET'], strict_slashes=False)
 def stats():
+    from models import storage
     """
     Returns number of each objects by type as json
     """
