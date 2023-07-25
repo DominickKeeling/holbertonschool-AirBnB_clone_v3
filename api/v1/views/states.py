@@ -44,7 +44,7 @@ def delete_state(state_id):
 def post_state():
     """ method creates a new state object """
     # checking to see if the incoming request is in json format
-    if not request.is_json:
+    if not request.is_json():
         abort(400, 'Request is not in JSON format')
 
     data = request.get_json()
@@ -58,8 +58,8 @@ def post_state():
 
 
 # Route to update an existing state by ID
-@app_views.route("/states/<state_id>", methods=['PUT'], strict_slashes=False)
-def update_stae(state_id):
+@app_views.route('/states/<state_id>', methods=['PUT'], strict_slashes=False)
+def update_state(state_id):
     """ Updates a State object """
     state = storage.get(State, state_id)
     if state is None:
