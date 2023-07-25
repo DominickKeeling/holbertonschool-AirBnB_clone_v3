@@ -45,14 +45,14 @@ def delete_city(city_id):
     
 
 # Route to add a new city under its state
-@app_views.route("/states/state_id/cities", methods=['POST'], strict_slashes=False)
+@app_views.route("/states/state_id/cities", methods=['DELETE'], strict_slashes=False)
 def post_city(state_id):
     """ method creates a new city """
     # checking to see if the incoming request is in json format
     if not request.is_json:
         abort(400, 'Request is not in JSON format')
 
-    data = request.get_json
+    data = request.get_json()
     if 'name' not in data:
         abort(400, 'Missing "name" field')
         
@@ -74,7 +74,7 @@ def update_city(city_id):
     if not request.is_json:
         return abort(400, 'Request is not in JSON format')
 
-    data = request.get_json
+    data = request.get_json()
     if 'name' not in data:
         return abort(400, 'Missing "name" field')
 

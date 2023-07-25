@@ -27,7 +27,7 @@ def state(state_id):
     
 
 # Route to delete a state
-@app_views.route("states/<state_id>", methods=['GET'], strict_slashes=False)
+@app_views.route("states/<state_id>", methods=['DELETE'], strict_slashes=False)
 def delete_state(state_id):
     """method for deleting state objects"""
     state = storage.get(State, state_id)
@@ -47,7 +47,7 @@ def post_state():
     if not request.is_json:
         abort(400, 'Request is not in JSON format')
 
-    data = request.get_json
+    data = request.get_json()
     if 'name' not in data:
         abort(400, 'Missing "name" field')
         
@@ -69,7 +69,7 @@ def update_state(state_id):
     if not request.is_json:
         return abort(400, 'Request is not in JSON format')
 
-    data = request.get_json
+    data = request.get_json()
     if 'name' not in data:
         return abort(400, 'Missing "name" field')
 
