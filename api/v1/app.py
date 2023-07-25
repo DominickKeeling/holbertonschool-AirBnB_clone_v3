@@ -22,7 +22,7 @@ def it_borked(error):
 
 
 if __name__ == "__main__":
-    host = getenv('HBNB_API_HOST', default='0.0.0.0')
-    port = getenv('HBNB_API_PORT', default=5000)
+    hosts = getenv('HBNB_API_HOST', default='0.0.0.0')
+    ports = getenv('HBNB_API_PORT', default=5000)
 
-    app.run(host, (int)port, threaded=True)
+    app.run(hosts=host, ports=port, threaded=True)
