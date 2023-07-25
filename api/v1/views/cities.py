@@ -78,7 +78,7 @@ def update_city(city_id):
     if 'name' not in data:
         return abort(400, 'Missing "name" field')
 
-    ignore_attributes = ['id', 'created_at', 'updated_at']
+    ignore_attributes = ('id', 'created_at', 'updated_at')
     for key, value in data.items():
         if key not in ignore_attributes:
             setattr(city, key, value)
