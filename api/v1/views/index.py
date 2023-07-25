@@ -8,16 +8,17 @@ from api.v1.views import app_views
 from flask import Flask, jsonify
 
 
-# route for obtaining the status of the API
-@app_views.route('/status', methods=['GET'])
+@app_views.route('/status', strict_slashes=False)
 def status():
+    """ Returns a status as json"""
     return jsonify({"status": "OK"})
 
-# route for obtaining the count for all objects
-@app_views.route('/stats', methods=['GET'])
-def stats():
-    classes = ['amenities', 'cities', 'places', 'reviews', 'states', 'users']
-    stats = {}
-    for cls in classes:
-        stats[cls] = storage.count(cls)
-    return jsonify(stats)
+@app_views.route('/stats', strict_slashes=False)
+def count():
+    """ Returns number of each objects by type as json """
+    return jsonify({"amenities": storage.count("Amenity"),
+                    "cities": storage.count("City"),
+                    "places": storage.count("Place"),
+                    "reviews": storage.count("Review"),
+                    "states": storage.count("State"),
+                    "users": storage.count("User")})
