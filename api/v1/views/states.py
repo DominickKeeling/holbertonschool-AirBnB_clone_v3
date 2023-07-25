@@ -4,7 +4,7 @@
 from flask import jsonify, abort, request
 from models import storage
 from models.state import State
-from api.v1.views import app_views 
+from api.v1.views import app_views
 
 
 # Route to get all states
@@ -24,7 +24,7 @@ def state(state_id):
         abort(404)
     else:
         return jsonify(state.to_dict())
-    
+ 
 
 # Route to delete a state
 @app_views.route("states/<state_id>", methods=['DELETE'], strict_slashes=False)
@@ -37,7 +37,7 @@ def delete_state(state_id):
         storage.delete(state)
         storage.save()
         return jsonify({}), 200
-    
+ 
 
 # Route to add a new state
 @app_views.route("/states", methods=['POST'], strict_slashes=False)
@@ -50,7 +50,7 @@ def post_state():
     data = request.get_json()
     if 'name' not in data:
         abort(400, 'Missing "name" field')
-        
+ 
     new_state = State(name=data['name'])
     new_state.save()
 
