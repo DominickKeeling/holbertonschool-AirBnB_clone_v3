@@ -21,7 +21,7 @@ def get_cities(state_id):
 
 
 # route to get the city id
-@app_views.route("cities/<city_id>", methodds=['GET'], strict_slashes=False)
+@app_views.route("cities/<city_id>", methods=['GET'], strict_slashes=False)
 def get_city(city_id):
     """ this method obtains the cities object in json format"""
     city = storage.get(City, city_id)
