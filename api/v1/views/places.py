@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 """ view for user objects that handles all default restful api actions"""
 
+from api.v1.views import app_views
 from flask import jsonify, abort, request
 from models import storage
-from api.v1.views import app_views
 from models.place import Place
 from models.city import City
 from models.user import User 
