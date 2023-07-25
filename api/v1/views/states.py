@@ -59,8 +59,8 @@ def post_state():
 
 # Route to update an existing state by ID
 @app_views.route("/states/<state_id>", methods=['PUT'], strict_slashes=False)
-def
-""" Updates a State object """
+def update_stae(state_id):
+    """ Updates a State object """
     state = storage.get(State, state_id)
     if state is None:
         abort(404)
