@@ -47,7 +47,7 @@ def post_state():
     if not request.is_json:
         abort(400, 'Request is not in JSON format')
 
-    data = request.json
+    data = request.get_json
     if 'name' not in data:
         abort(400, 'Missing "name" field')
         
