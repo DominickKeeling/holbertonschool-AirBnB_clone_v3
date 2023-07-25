@@ -44,7 +44,7 @@ def delete_state(state_id):
 def post_state():
     """ method creates a new state object """
     # checking to see if the incoming request is in json format
-    if not request.is_json():
+    if not request.is_json:
         abort(400, 'Request is not in JSON format')
 
     data = request.get_json()
